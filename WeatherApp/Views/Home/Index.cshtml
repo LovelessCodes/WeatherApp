@@ -1,0 +1,35 @@
+﻿@model Root
+
+@{
+    ViewData["Title"] = "Tell Me The Weather";
+}
+
+<div class="text-center">
+    <h1 class="display-4">
+        @Model.city.name
+    </h1>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Day</th>
+                <th>Weather</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.list)
+            {
+                <tr>
+                    <td class="align-middle">@item.time.DayOfWeek<br /><span class="badge bg-secondary">@item.time.Hour:00</span></td>
+                    @foreach (var i in item.weather)
+                    {
+                        <td>
+                            <img src="http://openweathermap.org/img/wn/@i.icon@@2x.png" /><br/>
+                            <span class="badge bg-secondary">@i.description</span>
+                        </td>
+                        
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
